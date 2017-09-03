@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+ 
+<struts>
+     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+     <constant name="struts.devMode" value="true"></constant> 
+    <package name="default" namespace="/"  extends="struts-default" strict-method-invocation="false" >
+    
+    	<default-action-ref name="error">  </default-action-ref>
+       <global-allowed-methods>regex:.*</global-allowed-methods>
+    		<action name="error">
+       			<result>/error.jsp</result>
+    		</action>
+    
+   		 <action name="helloworld_*" method="{1}"  class="action.HelloWorldAction">
+      			 <result> /helloworld.jsp</result>
+       			 <result name="add"> /{1}.jsp</result>
+      			 <result name="update"> /{1}.jsp</result>
+    	</action>
+    	 <action name="LoginAction" method="login"  class="action.LoginAction">
+      			 <result> /loginsuccess.jsp</result>
+      			 <result name="input"> /loginsuccess.jsp</result>
+    	</action>
+    	
+    </package>
+
+</struts>
